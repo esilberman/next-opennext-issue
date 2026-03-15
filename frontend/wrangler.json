@@ -1,0 +1,48 @@
+{
+  "$schema": "../node_modules/wrangler/config-schema.json",
+  "name": "next-opennext-issue",
+  "main": ".open-next/worker.js",
+  "compatibility_date": "2025-12-27",
+  "compatibility_flags": [
+    "nodejs_compat"
+  ],
+  "assets": {
+    "directory": ".open-next/assets",
+    "binding": "ASSETS"
+  },
+  "r2_buckets": [
+    {
+      "binding": "NEXT_INC_CACHE_R2_BUCKET",
+      "bucket_name": "next-opennext-issue-dev-cache"
+    }
+  ],
+  "observability": {
+    "enabled": true
+  },
+  "env": {
+    "dev": {
+      "name": "next-opennext-issue-dev",
+      "r2_buckets": [
+        {
+          "binding": "NEXT_INC_CACHE_R2_BUCKET",
+          "bucket_name": "next-opennext-issue-dev-cache"
+        }
+      ],
+      "vars": {
+        "ENVIRONMENT": "dev"
+      }
+    },
+    "prod": {
+      "name": "next-opennext-issue-prod",
+      "r2_buckets": [
+        {
+          "binding": "NEXT_INC_CACHE_R2_BUCKET",
+          "bucket_name": "next-opennext-issue-cache-prod"
+        }
+      ],
+      "vars": {
+        "ENVIRONMENT": "prod"
+      }
+    }
+  },
+}

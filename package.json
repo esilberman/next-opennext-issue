@@ -1,0 +1,24 @@
+{
+  "name": "next-opennext-issue",
+  "private": true,
+  "workspaces": [
+    "frontend"
+  ],
+  "scripts": {
+    "dev": "concurrently -n \"tunnel,convex,frontend,media\" -c \"gray,blue,magenta,green\" \"bun run dev:tunnel:cloudflare\" \"bun run dev:convex\" \"bun run dev:frontend\" \"bun run dev:media\"",
+    "dev:convex": "bunx convex dev",
+    "dev:frontend": "cd frontend && bun dev",
+    "dev:media": "cd cloudflare/process-media && bun dev",
+    "dev:tunnel:cloudflare": "bun run .scripts/tunnel.ts",
+    "dev:tunnel:frontend": "npx cloudflared tunnel --url http://localhost:3000",
+    "betterAuth:schema": "bun x @better-auth/cli generate --config ./convex/betterAuth/auth.ts --output ./convex/betterAuth/schema.ts",
+    "clean": "rm -rf node_modules",
+    "reinstall": "bun run clean && bun install"
+  },
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "dependencies": {
+    "concurrently": "^9.2.1"
+  }
+}
