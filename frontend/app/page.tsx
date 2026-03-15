@@ -1,5 +1,4 @@
 import { cn } from "@/lib/utils";
-import JsonLd from "@/lib/json_ld";
 
 export default function Website() {
     return (
